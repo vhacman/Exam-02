@@ -27,9 +27,11 @@ void	ft_putchar(char c)
 void	ulstr_print(char *str)
 {
 	int i = 0;
+    char c;
+
 	while (str[i])
 	{
-		char c = str[i];
+		c = str[i];
 		if (c >= 'a' && c <= 'z')         // minuscola → maiuscola
 			ft_putchar(c - 32);
 		else if (c >= 'A' && c <= 'Z')    // maiuscola → minuscola
