@@ -1,6 +1,24 @@
-#include <unistd.h> // Include la funzione write per stampare su stdout
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   repeat_alpha.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vhacman <vhacman@student.42roma.it>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/24 14:49:53 by vhacman           #+#    #+#             */
+/*   Updated: 2025/04/24 14:49:53 by vhacman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// Funzione che stampa ogni lettera del parametro ripetuta secondo la sua posizione nell'alfabeto
+#include <unistd.h>
+/*
+ * La funzione repeat_alpha stampa ogni lettera della stringa ricevuta come argomento
+ * ripetuta un numero di volte pari alla sua posizione nell'alfabeto.
+ * Ad esempio: 'a' viene stampata 1 volta, 'b' 2 volte, ..., 'z' 26 volte.
+ * Lo stesso vale per le lettere maiuscole: 'A' → 1 volta, 'B' → 2 volte, ecc.
+ * I caratteri non alfabetici vengono stampati una sola volta senza modifica.
+ * La stampa viene effettuata direttamente su standard output tramite write.
+ */
 void    repeat_alpha(char *str)
 {
 	int i;
@@ -8,33 +26,31 @@ void    repeat_alpha(char *str)
 	int repeat;
 
 	i = 0;
-	// Scorre ogni carattere della stringa
 	while (str[i] != '\0')
 	{
-		c = str[i];       // Salva il carattere attuale
-		repeat = 1;       // Di default stampa almeno una volta
+		c = str[i];
+		repeat = 1;
 
-		// Se il carattere è minuscolo, calcola la posizione da 'a'
 		if (c >= 'a' && c <= 'z')
 			repeat = c - 'a' + 1;
-		// Se è maiuscolo, calcola la posizione da 'A'
 		else if (c >= 'A' && c <= 'Z')
 			repeat = c - 'A' + 1;
 
-		// Stampa il carattere "repeat" volte
 		while (repeat--)
-			write (1, &c, 1);
-		i++; // Passa al carattere successivo
+			write(1, &c, 1);
+		i++;
 	}
 }
 
+/*
+ * La funzione main verifica che sia stato passato esattamente un argomento da linea di comando.
+ * Se sì, chiama la funzione repeat_alpha per elaborarlo e stamparlo.
+ * Alla fine stampa sempre un carattere di newline per andare a capo.
+ */
 int main(int ac, char **av)
 {
-	// Se è presente esattamente un argomento
 	if (ac == 2)
 		repeat_alpha(av[1]);
-
-	// Stampa sempre una newline
 	write(1, "\n", 1);
 	return (0);
 }

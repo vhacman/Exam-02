@@ -1,18 +1,40 @@
-#include <unistd.h> // Include la funzione write per stampare su stdout
-#include <stdio.h>  // Include la funzione printf per testare la funzione swap
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vhacman <vhacman@student.42roma.it>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/24 14:50:56 by vhacman           #+#    #+#             */
+/*   Updated: 2025/04/24 14:50:56 by vhacman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// Funzione che scambia i valori di due interi usando i puntatori
+#include <unistd.h> 
+#include <stdio.h>  
+
+/*
+ * La funzione ft_swap scambia i valori di due variabili intere.
+ * Riceve come parametri i puntatori agli interi da scambiare.
+ * Utilizza una variabile temporanea per effettuare lo scambio.
+ */
 void    ft_swap(int *a, int *b)
 {
 	int temp;
 
-	temp = *a;   // Salva temporaneamente il valore puntato da 'a'
-	*a = *b;     // Assegna a 'a' il valore puntato da 'b'
-	*b = temp;   // Assegna a 'b' il valore salvato (originariamente in 'a')
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 /*
-// Funzione main di test per ft_swap
+ * La funzione main serve per testare il funzionamento di ft_swap.
+ * Crea due interi, n1 e n2, inizializzati rispettivamente a 9 e 6.
+ * Crea due puntatori che puntano a questi interi.
+ * Prima dello scambio, stampa i valori puntati.
+ * Dopo aver chiamato ft_swap, stampa i valori aggiornati, che risultano invertiti.
+ */
+/*
 int	main(void)
 {
 	int	*a;
@@ -22,16 +44,14 @@ int	main(void)
 
 	n1 = 9;
 	n2 = 6;
-	a = &n1; // 'a' punta a 'n1'
-	b = &n2; // 'b' punta a 'n2'
+	a = &n1;
+	b = &n2;
 
-	// Prima dello scambio
 	printf("Value of n1 is: %u and the value of n2 is: %u.", *a, *b);
 
-	ft_swap(a, b); // Esegue lo scambio
+	ft_swap(a, b);
 
 	printf("\n");
-	// Dopo lo scambio
 	printf("Now the value of n1 is: %u and the value of n2 is: %u.", *a, *b);
 	printf("\n");
 }
