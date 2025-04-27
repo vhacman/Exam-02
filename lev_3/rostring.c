@@ -22,7 +22,7 @@ void    ft_putstr(char *str, int len)
 	write(1, str, len);
 }
 
-int skip_whitespaces(char *str, int i)
+int skip_space(char *str, int i)
 {
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
@@ -43,22 +43,22 @@ void    print_rest_words(char *str, int start)
 	int i = start;
 	int first = 1;
 
-	i = skip_whitespaces(str, i);
+	i = skip_space(str, i);
 
 	while (str[i])
 	{
 		int len = word_len(str + i);
 		if (len > 0)
 		{
-			if (!first)
+			if (first == 0)
 				ft_putchar(' ');
 			ft_putstr(str + i, len);
 			first = 0;
 			i += len;
 		}
-		i = skip_whitespaces(str, i);
+		i = skip_space(str, i);
 	}
-	if (!first)
+	if (first == 0)
 		ft_putchar(' ');
 }
 
@@ -75,10 +75,10 @@ void    rostring(char *str)
 	int first_word_start;
 	int first_word_len;
 
-	i = skip_whitespaces(str, i);
+	i = skip_space(str, i);
 	first_word_start = i;
 	first_word_len = word_len(str + i);
-	i += first_word_len;
+	i = i + first_word_len;
 
 	print_rest_words(str, i);
 	print_first_word(str, first_word_start, first_word_len);

@@ -71,7 +71,7 @@ char	**ft_split(char *str)
 		return (NULL);
 	while (*str)
 	{
-		while (is_delimiter(str))
+		while (is_delimiter(*str))
 			str++;
 		if (*str)
 		{
