@@ -12,55 +12,50 @@
 
 #include <unistd.h>
 
-// Funzione per controllare se un carattere è già stato stampato
-int is_printed(char c, char *str, int pos)
+void    ft_putchar(char c)
 {
-    int i = 0;
-    
-    while (i < pos)
-    {
-        if (str[i] == c)
-            return (1);
-        i++;
-    }
-    return (0);
+    write(1, &c, 1);
 }
 
-// Funzione per controllare se un carattere esiste nella seconda stringa
-int in_second_string(char c, char *str)
+int is_printed(char *str, char c, int pos)
 {
     int i = 0;
 
-    while (str[i] != '\0')
+    while(i < pos)
     {
         if (str[i] == c)
-            return (1);
+            return(1);
         i++;
     }
-    return (0);
+    return(0);
 }
 
-int main (int ac, char **av)
+void    inter(char *s1, char *s2)
 {
-    int     i;
-    char    current;
-    char    *second;
-    char    *first;
+    int i = 0;
+    int k = 0;
 
-    i = 0;
-    if (ac == 3)
+    while(s1[i])
     {
-        while (av[1][i])
+        k = 0;
+        while(s2[k])
         {
-            current = av[1][i];
-            second = av[2];
-            first = av[1];
-            if (in_second_string(current, second) &&
-                !is_printed(current, first, i))
-                write(1, &current, 1);
-            i++;
+            if(s1[i] == s2[k])
+            {
+                if(!is_printed(s1, s1[i], i))
+                    ft_putchar(s1[i]);
+                break;
+            }
+            k++;
         }
+        i++;
     }
-    write(1, "\n", 1);
-    return (0);
+}
+
+int main(int ac, char **av)
+{
+    if(ac == 3)
+        inter(av[1], av[2]);
+    ft_putchar('\n');
+    return(0);
 }

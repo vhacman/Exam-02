@@ -11,68 +11,68 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <unistd.h>
+
+int is_prime(int n)
+{
+    int i = 2;
+
+    while(i < n)
+    {
+        if (n % i == 0)
+            return(0);
+        i++;
+    }
+    return(1);
+}
 
 int ft_atoi(char *str)
 {
-	int i = 0;
-	int n = 0;
+    int i = 0;
+    int res = 0;
 
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		n = n * 10 + (str[i] - '0');
-		i++;
-	}
-	return (n);
+    while(str[i] >= '0' && str[i] <= '9')
+    {
+        res = res * 10 + (str[i] - '0');
+        i++;
+    }
+    return (res);
+}
+void    ft_putnbr(int n)
+{
+    char c;
+    if (n >= 10)
+        ft_putnbr(n / 10);
+    c = n % 10 + '0';
+    write(1, &c, 1);
 }
 
-void ft_putnbr(int n)
+int    add_prime_sum(int n)
 {
-	char c;
+    int i = 2;
+    int sum = 0;
 
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	c = '0' + (n % 10);
-	write (1, &c, 1);
-}
-
-int	is_prime(int n)
-{
-	int i;
-
-	i = 2;
-	while (i < n)
-	{
-		if (n % i == 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int add_prime_sum(int n)
-{
-	int sum;
-	int i;
-
-	sum = 0;
-	i = 2;
-	while (i <= n)
-	{
-		if (is_prime(i))
-			sum = sum + i;
-		i++;
-	}
-	return (sum);
+    while (i <= n)
+    {
+        if(is_prime(i))
+            sum = sum + i;
+        i++;
+    }
+    return (sum);
 }
 
 int main(int ac, char **av)
 {
-	int n;
-
-	if (ac == 2 && (n = ft_atoi(av[1])))
-		ft_putnbr(add_prime_sum(n));
-	else
-		ft_putnbr(0);
-	write(1, "\n", 1);
-	return (0);
+    if (ac == 2)
+    {
+        int n = ft_atoi(av[1]);
+        if(n > 0)
+            ft_putnbr(add_prime_sum(n));
+        else
+            ft_putnbr(0);
+    }
+    else
+        ft_putnbr(0);
+    write(1, "\n", 1);
+    return(0);
 }
