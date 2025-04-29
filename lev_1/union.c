@@ -12,65 +12,68 @@
 
 #include <unistd.h>
 
-/* Verifica se il carattere 'c' è già apparso nella
-stringa 'str' fino alla posizione 'current' */
-int	is_printed(char c, char *str, int current)
+void    ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+int ft_strlen(char *str)
 {
 	int i = 0;
-	while (i < current)
+	while(str[i])
+		i++;
+	return(i);
+}
+
+int is_printed(char *str, char c, int pos)
+{
+	int i = 0;
+
+	while(i < pos)
 	{
 		if (str[i] == c)
-			return (1);
+			return(1);
 		i++;
 	}
-	return (0);
+	return(0);
 }
 
-/* Controlla se 'c' è presente in tutta la stringa 'str' */
-int	is_in_str(char c, char *str)
+void    print_second(char *s1, char *s2)
+{
+	int j = 0;
+	int i;
+
+	while(s2[j])
+	{
+		i = 0;
+		while(s1[i])
+		{
+			if(s2[j] == s1[i])
+				break;
+			i++;
+		}
+		if(!s1[i] && !is_printed(s2, s2[j], j))
+			ft_putchar(s2[j]);
+		j++;
+	}
+}
+void   ft_union(char *s1, char *s2)
 {
 	int i = 0;
-	while (str[i])
+
+	while(s1[i])
 	{
-		if (str[i] == c)
-			return (1);
+		if(!is_printed(s1, s1[i], i))
+			ft_putchar(s1[i]);
 		i++;
 	}
-	return (0); 
+	print_second(s1, s2);
 }
 
-/* Stampa i caratteri unici della prima stringa */
-void	print_first(char *first)
+int main(int ac, char **av)
 {
-	int i = 0;
-	while (first[i])
-	{
-		if (!is_printed(first[i], first, i))
-			write(1, &first[i], 1);
-		i++;
-	}
-}
-
-/* Stampa i caratteri unici della seconda stringa che non sono nella prima */
-void	print_second(char *second, char *first)
-{
-	int i = 0;
-	while (second[i])
-	{
-		if (!is_in_str(second[i], first) && !is_printed(second[i], second, i))
-			write(1, &second[i], 1);
-		i++;
-	}
-}
-
-/* Main principale */
-int	main(int ac, char **av)
-{
-	if (ac == 3)
-	{
-		print_first(av[1]);
-		print_second(av[2], av[1]);
-	}
-	write(1, "\n", 1);
-	return (0);
+	if(ac == 3)
+		ft_union(av[1], av[2]);
+	ft_putchar('\n');
+	return(0);
 }
