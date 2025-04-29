@@ -17,40 +17,49 @@ If the number of parameters is not 1, or there are no words, display a newline.*
 
 #include <unistd.h>
 
-void	print_last_word(char *str)
+void	ft_putchar(char c)
 {
-	int	i;
+	write(1, &c, 1);
+}
 
-	i = 0;
-	while (str[i] != '\0')
+int	ft_strlen(char *str)
+{
+	int	i = 0;
+	while(str[i])
 		i++;
-	i--; // ora 'i' punta all’ultimo carattere valido
-    
-    //Serve per evitare che spazi o tab alla fine vengano considerati come parte della "parola".
-	while ((str[i] == ' ' || str[i] == '\t') && i != 0)
-		i--;
+	return(i);
+}
 
-    //Qui vai all'indietro finché trovi caratteri validi di parola.
-	while (str[i] != ' ' && str[i] != '\t' && i != 0)
-		i--;
-    
-    //4. Se ti sei fermato su uno spazio/tab, vai avanti di uno
-	if (str[i] == ' ' || str[i] == '\t')
-		i++;
-    
-    //5. Stampa la parola fino al prossimo spazio/tab o fine stringa
+int	is_delimiter(char c)
+{
+	return(c == ' ' || c == '\t' || c == '\n');
+}
+void	last_word(char *str)
+{
+	int	i = ft_strlen(str) - 1;
+	int start;
 
-	while (str[i] != '\0' && str[i] != ' ' && str[i] != '\t')
+	while(i >= 0 && is_delimiter(str[i]))
+			i--;
+	if(i >= 0)
 	{
-		write(1, &str[i], 1);
-		i++;
+		while(str[i] && !is_delimiter(str[i]))
+			i--;
+		start = i + 1;
+		while(str[start])
+		{
+			if(str[start] && !is_delimiter(str[start]))
+				ft_putchar(str[start]);
+			start++;
+		}
+		i--;
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    if (ac == 2)
-        print_last_word(av[1]);
-    write (1, "\n", 1);
-    return (0);
+	if(ac == 2)
+		last_word(av[1]);
+	ft_putchar('\n');
+	return(0);
 }
