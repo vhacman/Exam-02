@@ -35,14 +35,18 @@ char	*ft_strdup(char *src)
 }
 
 // #include <stdio.h>
-
+// #include <string.h>
 // int main(int argc, char **argv)
 // {
 //     if(argc == 1)
 //     {
 //         printf("ft_strdup(\"\") = %s\n", ft_strdup(""));
+//         printf("strdup(\"\") = %s\n", strdup(""));
+
 //         return(0);
 //     }
 //     printf("ft_strdup(\"%s\") = %s\n", argv[1], ft_strdup(argv[1]));
+//     printf("strdup(\"%s\") = %s\n", argv[1], strdup(argv[1]));
+
 //     return(0);
 // }
