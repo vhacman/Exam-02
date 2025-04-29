@@ -29,10 +29,18 @@ unsigned char   swap_bits(unsigned char octet)
     return ((octet >> 4) | (octet << 4));
 }
 
-// int	main(void)
+
+// #include <unistd.h>
+// #include <stdio.h>
+
+// int	main(int argc, char **argv)
 // {
-// 	unsigned char val = 65; // 0100 0001
-// 	unsigned char res = swap_bits(val);
-// 	printf("Original: %u, Swapped: %u\n", val, res); // Output: 65, 20
+// 	if (argc == 2)
+// 	{
+// 		unsigned char c = argv[1][0];
+// 		printf("Original char: %c (ASCII %d)\n", c, c);
+// 		c = swap_bits(c);
+// 		printf("Swapped char: %c (ASCII %d)\n", c, c);
+// 	}
 // 	return (0);
 // }
