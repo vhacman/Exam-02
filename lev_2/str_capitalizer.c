@@ -28,14 +28,6 @@ int	is_letter(char c)
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
-/*
- * Restituisce 1 se il carattere è uno spazio o un tabulatore, altrimenti 0.
- * Serve per individuare i separatori tra parole.
- */
-int	is_separator(char c)
-{
-	return (c == ' ' || c == '\t');
-}
 
 /*
  * Converte una lettera maiuscola in minuscola.
@@ -69,22 +61,18 @@ void	str_capitalizer(char *str)
 {
 	int		i;
 	char	current;
+    char    previous = ' ';
 
 	i = 0;
 	while (str[i])
 	{
 		current = str[i];
-		if (i == 0 || is_separator(str[i - 1]))
-		{
-			if (current >= 'a' && current <= 'z')
+		if (!is_letter(previous) && is_letter(current))
 				current = to_upper(current);
-		}
-		else
-		{
-			if (current >= 'A' && current <= 'Z')
+		else if(is_letter(current))
 				current = to_lower(current);
-		}
 		ft_putchar(current);
+        previous = str[i];
 		i++;
 	}
 }
