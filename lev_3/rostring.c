@@ -9,7 +9,6 @@
 /*   Updated: 2025/04/26 19:59:08 by vhacman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <unistd.h>
 
 void    ft_putchar(char c)
@@ -17,77 +16,67 @@ void    ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void    ft_putstr(char *str, int len)
-{
-	write(1, str, len);
-}
-
 int skip_space(char *str, int i)
 {
-	while (str[i] == ' ' || str[i] == '\t')
+	while(str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
 		i++;
-	return (i);
+	return(i);
 }
 
-int word_len(char *str)
+int	is_delimiter(char c)
 {
-	int i = 0;
-	while (str[i] && str[i] != ' ' && str[i] != '\t')
-		i++;
-	return (i);
+	return(c == ' ' || c == '\t' || c == '\n');
 }
 
-/* Stampa tutte le parole tranne la prima */
-void    print_rest_words(char *str, int start)
+int	skip_first_word(char *str, int i, int *end)
 {
-	int i = start;
+	while (str[i] && !is_delimiter(str[i]))
+		i++;
+	*end = i;
+	return (skip_space(str, i));
+}
+int	print_words(char *str, int i)
+{
 	int first = 1;
-
-	i = skip_space(str, i);
+	int printed = 0;
 
 	while (str[i])
 	{
-		int len = word_len(str + i);
-		if (len > 0)
+		if (!is_delimiter(str[i]))
 		{
-			if (first == 0)
+			if (!first)
 				ft_putchar(' ');
-			ft_putstr(str + i, len);
 			first = 0;
-			i += len;
+			printed = 1;
+			while (str[i] && !is_delimiter(str[i]))
+				ft_putchar(str[i++]);
 		}
-		i = skip_space(str, i);
+		else
+			i++;
 	}
-	if (first == 0)
-		ft_putchar(' ');
+	return(printed);
 }
 
-/* Stampa la prima parola salvata */
-void    print_first_word(char *str, int start, int len)
-{
-	ft_putstr(str + start, len);
-}
-
-/* Funzione principale */
-void    rostring(char *str)
+void	rostring(char *str)
 {
 	int i = 0;
-	int first_word_start;
-	int first_word_len;
+	int start = 0;
+	int end = 0;
 
 	i = skip_space(str, i);
-	first_word_start = i;
-	first_word_len = word_len(str + i);
-	i = i + first_word_len;
-
-	print_rest_words(str, i);
-	print_first_word(str, first_word_start, first_word_len);
+	start = i;
+	i = skip_first_word(str, i, &end);
+	int printed = print_words(str, i);
+	if(printed)
+		ft_putchar(' ');
+	while(start < end)
+		ft_putchar(str[start++]);
 }
 
-int		main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	if (argc >= 2)
-		rostring(argv[1]);
+	if(ac >= 2)
+		rostring(av[1]);
 	ft_putchar('\n');
-	return (0);
+	return(0);
 }
