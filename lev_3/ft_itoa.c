@@ -48,7 +48,7 @@ char    *ft_itoa(int n)
 		result[0] = '-';
 	else if (n == 0)
 		result[0] = '0';
-	while (n != '0')
+	while (n != 0)
 	{
 		len--;
 		result[len] = absolute(n % 10) + '0';
