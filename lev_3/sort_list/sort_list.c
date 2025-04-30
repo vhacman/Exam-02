@@ -1,6 +1,6 @@
 #include "list.h"
 
-int swap_value(t_list *a, t_list *b)
+void swap_value(t_list *a, t_list *b)
 {
     int *temp;
 

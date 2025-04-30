@@ -34,31 +34,23 @@ int is_prime(int n)
 	return (1);
 }
 
-void    fprime(char *str)
+void	fprime(char *str)
 {
-	int n;
-	int factor;
-	int first;  //flag per capire se stiamo stampando il primo numero o no
+	int n = atoi(str);
+	int factor = 2;
+	int first = 1;
 
-	n = atoi(str);
-	factor = 2;
-	first = 1;
-	//se n è 1 stampiamo 1 perché non ha numeri primi
 	if (n == 1)
 		printf("1");
-	//finché factor è minore o uguale a n continuiamo a cercare fattori
-	while (factor <= n)
+	while(factor <= n)
 	{
-		//se factor divide esattamente n ed è un numero primo
-		if (n % factor == 0 && is_prime(factor))
+		if(n % factor == 0 && is_prime(factor))
 		{
-			//se è il primo numero stampiamo solo il numero
-			if ( first == 1)
+			if(first == 1)
 				printf("%d", factor);
 			else
-				printf("*%d", factor); //se non è il primo mettiamo un * prima
-			first = 0; //dopo aver stampato il primo numero aggiorniamo la flag per stampare *
-			//quando abbiamo trovato un fattore e l'abbiamo stampato lo dobbiamo togliere a n, quindi dividiamo n per factori e aggiorniamo la n
+				printf("*%d", factor);
+			first = 0;
 			n = n / factor;
 		}
 		else
