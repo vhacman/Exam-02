@@ -1,63 +1,66 @@
 #include <unistd.h>
 
-void    ft_putchar(char c)
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
 
-int is_letter(char c)
+int	is_space(char c)
 {
-    return((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	return (c == ' ' || c == '\t');
 }
 
-char    to_lower(char c)
+int	is_lower(char c)
 {
-    if(c >= 'A' && c <= 'Z')
-        c = c + 32;
-    return(c);
+	return (c >= 'a' && c <= 'z');
 }
 
-char    to_upper(char c)
+int	is_upper(char c)
 {
-    if (c >= 'a' && c <= 'z')
-        c = c - 32;
-    return(c);
+	return (c >= 'A' && c <= 'Z');
 }
 
-void    rstr_capitalizer(char *str)
+void	str_capitalizer(char *str)
 {
-    int i = 0;
-    
-    while(str[i])
-    {
-        char current = str[i];
-        char next = str[i + 1];
-        if(is_letter(current))
-        {
-            if(!is_letter(next))
-                ft_putchar(to_upper(current));
-            else
-                ft_putchar(to_lower(current));
-        }
-        else
-            ft_putchar(current);
-        i++;
-    }
+	int i = 0;
+
+	while (str[i])
+	{
+		// Stampa spazi o tab
+		while (str[i] && is_space(str[i]))
+		{
+			ft_putchar(str[i]);
+			i++;
+		}
+
+		// Elabora una parola
+		while (str[i] && !is_space(str[i]))
+		{
+			char current = str[i];
+			char next = str[i + 1];
+
+			if (is_lower(current) && (next == '\0' || is_space(next)))
+				current -= 32; // minuscola finale → maiuscola
+			else if (is_upper(current) && (next != '\0' && !is_space(next)))
+				current += 32; // maiuscola non finale → minuscola
+
+			ft_putchar(current);
+			i++;
+		}
+	}
+	ft_putchar('\n');
 }
 
-int main(int ac, char **av)
+int	main(int argc, char **argv)
 {
-    int i = 1;
-    if (ac == 1)
-    {
-        ft_putchar('\n');
-        return(0);
-    }
-    while (i < ac)
-    {
-        rstr_capitalizer(av[i]);
-        ft_putchar('\n');
-        i++;
-    }
-    return(0);
+	int i = 1;
+
+	if (argc == 1)
+		ft_putchar('\n');
+	while (i < argc)
+	{
+		str_capitalizer(argv[i]);
+		i++;
+	}
+	return (0);
 }
