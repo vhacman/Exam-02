@@ -1,6 +1,5 @@
 #include <unistd.h>
 
-
 int	is_delimiter(char c)
 {
 	return(c == ' ' || c == '\t' || c == '\n');

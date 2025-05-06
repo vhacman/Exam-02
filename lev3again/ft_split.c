@@ -14,7 +14,7 @@ int	skip_space(char *str, int i)
 
 int	skip_word(char *str, int i)
 {
-	while(str[i], && !is_delimiter(str[i]))
+	while(str[i] && !is_delimiter(str[i]))
 		i++;
 	return i;
 }
@@ -74,8 +74,9 @@ char	**ft_split(char *str)
 	while(str[i])
 	{
 		i = skip_space(str, i);
-		if(str[i] && !is_delimiter(str, i))
+		if(str[i] && !is_delimiter(str))
 		{
+			int len = ft_wordlen(&str[i]);
 			array[j++] = word_dup(&str[i]);
 			i = len + i;
 		}
