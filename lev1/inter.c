@@ -10,7 +10,7 @@ void    inter(char *s1, char *s2)
         j = 0;
         while(s2[j])
         {
-            if(s1[i] == s2[j] && !seen[(unsigned char)s2[i]])
+            if(s1[i] == s2[j] && !seen[(unsigned char)s1[i]])
             {
                 write(1, &s1[i], 1);
                 seen[(unsigned char)s1[i]] = 1;
