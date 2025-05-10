@@ -11,7 +11,7 @@ int char_to_value(char c)
 }
 
 
-int ft_atoi_base(const char *str, int str_base)
+int ft_atoi_base(const char *str, unsigned int base)
 {
 	int i = 0;
 	int res = 0;
@@ -27,9 +27,9 @@ int ft_atoi_base(const char *str, int str_base)
 		i++;
 	}
 
-	while((value = char_to_value(str[i])) != -1 && value < str_base)
+	while((int)(value = char_to_value(str[i])) != -1 && value < base)
 	{
-		res = res * str_base + value;
+		res = res * base + value;
 		i++;
 	}
 	return(res * sign);
