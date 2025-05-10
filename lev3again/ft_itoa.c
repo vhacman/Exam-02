@@ -14,25 +14,23 @@ int get_len(int n)
     return (len);
 }
 
-char    *ft_itoa(int n)
+char    *ft_itoa(int nbr)
 {
-    long nbr = n;
     int len = get_len(nbr);
     char *result = malloc(len + 1);
     if(!result)
         return NULL;
     result[len] = '\0';
     if(nbr == 0)
-        result[len] = '0';
+        result[0] = '0';
     if(nbr < 0)
     {
-        result[len] = '-';
+        result[0] = '-';
         nbr = - nbr;
     }
     while(nbr != 0)
     {
-        len--;
-        result[len] = nbr % 10 + '0';
+        result[--len] = nbr % 10 + '0';
         nbr = nbr / 10;
     }
     return result;
