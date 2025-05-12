@@ -2,6 +2,7 @@
     "files.associations": {
         "unistd.h": "c",
         "stdlib.h": "c",
-        "random": "c"
+        "random": "c",
+        "string.h": "c"
     }
 }
