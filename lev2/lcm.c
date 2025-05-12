@@ -16,9 +16,9 @@ unsigned int lcm(unsigned int a, unsigned int b)
 	return((a / pgdc(a, b)) * b);
 }
 
-#include <stdio.h>
+// #include <stdio.h>
 
-int	main()
-{
-	printf("%d\n", lcm(-3, -6));
-}
+// int	main()
+// {
+// 	printf("%d\n", lcm(-3, -6));
+// }
