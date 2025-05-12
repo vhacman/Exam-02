@@ -11,7 +11,14 @@ unsigned int pgdc(unsigned int a, unsigned int b)
 
 unsigned int lcm(unsigned int a, unsigned int b)
 {
-	if(a == 0 || b == 0)
+	if((int)a <= 0 || (int)b <= 0)
 		return 0;
 	return((a / pgdc(a, b)) * b);
+}
+
+#include <stdio.h>
+
+int	main()
+{
+	printf("%d\n", lcm(-3, -6));
 }
