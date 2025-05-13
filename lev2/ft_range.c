@@ -47,23 +47,19 @@ int *ft_range(int start, int end)
 	return(array);
 }
 
-// int main(int argc, char **argv)
-// {
-// 	if (argc == 3)
-// 	{
-// 		int start = atoi(argv[1]);
-// 		int end = atoi(argv[2]);
-// 		int size = count_size(start, end);
-// 		int *array = ft_range(start, end);
+/*
+#include <stdio.h>
+int main()
+{
+	int *array;
+	int i = 0;
 
-// 		if (!array)
-// 			return 1;
-
-// 		for (int i = 0; i < size; i++)
-// 			printf("%d ", array[i]);
-// 		printf("\n");
-
-// 		free(array);
-// 	}
-// 	return 0;
-// }
+	array = ft_range(1, 3);
+	while(i < 3)
+	{
+		printf("%d\n", array[i]);
+		i++;
+	}
+	return 0;
+}
+*/
