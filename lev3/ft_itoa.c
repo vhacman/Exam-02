@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdlib.h>
 
 int get_len(int n)
 {
@@ -35,3 +36,12 @@ char    *ft_itoa(int nbr)
     }
     return result;
 }
+
+/*
+#include <stdio.h>
+
+int	main()
+{
+	printf("%s\n", ft_itoa(-2147483647));
+	return 0;
+}*/
