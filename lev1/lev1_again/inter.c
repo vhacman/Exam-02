@@ -3,21 +3,19 @@
 void	inter(char *s1, char *s2)
 {
 	int i = 0;
-	int j;
 	int seen[256] = {0};
-	
-	while(s1[i])
+	int present[256] = {0};
+
+	while (s2[i])
+		present[(unsigned char)s2[i++]] = 1;
+
+	i = 0;
+	while (s1[i])
 	{
-		j = 0;
-		while(s2[j])
+		if (present[(unsigned char)s1[i]] && !seen[(unsigned char)s1[i]])
 		{
-			if(s1[i] == s2[j] && !seen[(unsigned char)s1[i]])
-			{
-				write(1, &s1[i], 1);
-				seen[(unsigned char)s1[i]] = 1;
-				break;
-			}
-			j++;
+			write(1, &s1[i], 1);
+			seen[(unsigned char)s1[i]] = 1;
 		}
 		i++;
 	}

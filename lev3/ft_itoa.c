@@ -18,21 +18,22 @@ int get_len(int n)
 char    *ft_itoa(int nbr)
 {
     int len = get_len(nbr);
+    long n = nbr;
     char *result = malloc(len + 1);
     if(!result)
         return NULL;
     result[len] = '\0';
-    if(nbr == 0)
+    if(n == 0)
         result[0] = '0';
-    if(nbr < 0)
+    if(n < 0)
     {
         result[0] = '-';
-        nbr = - nbr;
+        n = - n;
     }
-    while(nbr != 0)
+    while(n != 0)
     {
-        result[--len] = nbr % 10 + '0';
-        nbr = nbr / 10;
+        result[--len] = n % 10 + '0';
+        n = n / 10;
     }
     return result;
 }
@@ -42,6 +43,6 @@ char    *ft_itoa(int nbr)
 
 int	main()
 {
-	printf("%s\n", ft_itoa(-2147483647));
+	printf("%s\n", ft_itoa(-2147483648));
 	return 0;
 }*/
