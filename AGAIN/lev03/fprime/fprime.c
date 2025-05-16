@@ -39,12 +39,8 @@ void	fprime(char *str)
 		write(1, "1", 1);
 	while(factor <= n)
 	{
-		//if(n == 1)
-		//	write(1, "1", 1);	
 		if(n % factor == 0 && is_prime(factor))
 		{
-			//if(n ==  1)
-			//	write(1, "1", 1);	
 			if(first)
 				ft_putchar('*');
 			ft_putnbr(factor);

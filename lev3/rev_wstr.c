@@ -35,8 +35,6 @@ void rev_wstr(char *str)
     while (i >= 0)
     {
         i = rskip_space(str, i);
-        if (i < 0)
-            break;
         start = rskip_word(str, i);
         write(1, &str[start + 1], i - start);
         i = start;
