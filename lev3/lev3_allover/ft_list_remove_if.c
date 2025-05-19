@@ -10,9 +10,7 @@ void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
                 *begin_list = (*begin_list)->next;
                 free(temp);
         }
-
         t_list *curr = *begin_list;
-
         while(curr && curr->next)
         {
                 if(cmp(curr->next->data, data_ref) == 0)
