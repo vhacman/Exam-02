@@ -22,3 +22,12 @@ unsigned char	reverse_bits(unsigned char octet)
 		reversed = (reversed << 1) | (octet & 1), octet >>= 1;
 	return reversed;
 }
+
+#include <stdio.h>
+int	main()
+{
+	unsigned char octet = 2;
+	unsigned char reversed = reverse_bits(octet);
+	printf("%d\n", reversed);
+	return 0;
+}
