@@ -31,15 +31,17 @@ void rev_wstr(char *str)
 {
     int i = ft_strlen(str) - 1;
     int start;
+    int first = 0;
 
     while (i >= 0)
     {
+        if (first)
+            write(1, " ", 1);
         i = rskip_space(str, i);
         start = rskip_word(str, i);
         write(1, &str[start + 1], i - start);
         i = start;
-        if (i > 0)
-            write(1, " ", 1);
+        first = 1;
     }
 }
 

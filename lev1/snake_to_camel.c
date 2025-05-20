@@ -8,21 +8,15 @@ void    ft_putchar(char c)
 void    snake_to_camel(char *str)
 {
     int i = 0;
-    int upper;
 
     while(str[i])
     {
-        char c = str[i];
-        if(c == '_')
-            upper = 1;
-        else
+        if(str[i] == '_')
         {
-            if(upper && c >= 'a' && c <= 'z')
-                ft_putchar(c - 32);
-            else
-                ft_putchar(c);
-            upper = 0;
+            i++;
+            str[i] = str[i] - 32;
         }
+        write(1, &str[i], 1);
         i++;
     }
 }

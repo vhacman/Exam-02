@@ -1,31 +1,53 @@
 #include <unistd.h>
-
-size_t  ft_strspn(const char *s, const char *accept)
+size_t ft_strspn(const char *s, const char *accept)
 {
-	const char *start = s;
-	const char *check;
+	int i = 0;
+	int j;
 
-	while(*s)
+	while(s[i])
 	{
-		check = accept;
-		while(*check && *check != *s)
-			check++;
-		if(!*check)
+		j = 0;
+		while(accept[j] && s[i] != accept[j])
+			j++;
+		if(!accept[j])
 			break;
-		s++;
+		i++;
 	}
-	return(s - start);
+	return i;
 }
 
 
-// #include <stdio.h>
-// int main(void)
+// size_t  ft_strspn(const char *s, const char *accept)
 // {
-// 	printf("%zu\n", ft_strspn("abcde123", "abcde"));      // 5
-// 	printf("%zu\n", ft_strspn("123abc", "0123456789"));   // 3
-// 	printf("%zu\n", ft_strspn("hello", "he"));            // 2
-// 	printf("%zu\n", ft_strspn("hello", "xyz"));           // 0
-// 	printf("%zu\n", ft_strspn("", "abc"));                // 0
-// 	printf("%zu\n", ft_strspn("abcdef", ""));             // 0
-// 	return 0;
+// 	int i = 0;
+// 	int j;
+// 	int found;
+// 	while(s[i])
+// 	{
+// 		j = 0;
+// 		found = 0;
+// 		while(accept[j])
+// 		{
+// 			if(s[i] == accept[j])
+// 				found = 1;
+// 			j++;
+// 		}
+// 		if(!found)
+// 			break;
+// 		i++;
+// 	}
+// 	return i;
 // }
+
+#include <string.h>
+#include <stdio.h>
+int main(void)
+{
+	printf("%zu\n", ft_strspn("abcde123", "abcde"));      // 5
+	printf("%zu\n", ft_strspn("123abc", "0123456789"));   // 3
+	printf("%zu\n", ft_strspn("hello", "he"));            // 2
+	printf("%zu\n", ft_strspn("hello", "xyz"));           // 0
+	printf("%zu\n", ft_strspn("", "abc"));                // 0
+	printf("%zu\n", ft_strspn("abcdef", ""));             // 0
+	return 0;
+}

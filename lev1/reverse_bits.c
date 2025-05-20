@@ -18,7 +18,7 @@ unsigned char	reverse_bits(unsigned char octet)
 {
 	unsigned char reversed = 0;
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 8; i > 0; i--)
 		reversed = (reversed << 1) | (octet & 1), octet >>= 1;
 	return reversed;
 }
@@ -26,7 +26,7 @@ unsigned char	reverse_bits(unsigned char octet)
 #include <stdio.h>
 int	main()
 {
-	unsigned char octet = 2;
+	unsigned char octet = 64;
 	unsigned char reversed = reverse_bits(octet);
 	printf("%d\n", reversed);
 	return 0;

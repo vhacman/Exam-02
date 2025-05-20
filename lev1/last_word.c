@@ -18,22 +18,18 @@ int is_delimiter(char c)
 	return (c == ' ' || c == '\n' || c == '\t');
 }
 
-void    last_word(char *str)
+void	last_word(char *str)
 {
 	int i = ft_strlen(str) - 1;
 
-	while(i >= 0 && is_delimiter(str[i]))
+	while(str[i] && is_delimiter(str[i]))
 		i--;
-	while(i >= 0 && !is_delimiter(str[i]))
+	int end = i;
+	while(str[i] && !is_delimiter(str[i]))
 		i--;
-	int start = i + 1;
-	while(str[start] && !is_delimiter(str[start]))
-	{
-		ft_putchar(str[start]);
-		start++;
-	}
+	int start = i;
+	write(1, str + start + 1, end - start);
 }
-
 int main(int ac, char **av)
 {
 	if(ac == 2)
