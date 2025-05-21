@@ -1,6 +1,6 @@
 # 🌊 Esercizi in C – Common Core 42 & Pratica Personale
 
-Benvenuto/a in questa collezione di esercizi base e intermedi scritti in **C**, pensati per chi affronta la _Piscine_ di **42**, studia informatica a basso livello o vuole semplicemente tenersi in allenamento.
+Benvenuto/a in questa collezione di esercizi base e intermedi scritti in **C**, pensati per chi affronta Exam 02 del Common Core di **42**, studia informatica a basso livello o vuole semplicemente tenersi in allenamento.
 
 > ✅ Tutti i file sono indipendenti e compilabili singolarmente. (alcuni non hanno il main, bisognerebbe implementarlo = feel free to do it)
 > 🧠 Nessuna libreria esterna, solo `unistd.h` e `stdlib.h`.  
