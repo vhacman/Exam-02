@@ -1,4 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vhacman <vhacman@student.42roma.it>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/21 23:16:58 by vhacman           #+#    #+#             */
+/*   Updated: 2025/05/21 23:16:58 by vhacman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+/*
+** Converte un carattere `c` in valore numerico, compatibile con basi fino a 16.
+**
+** - '0'–'9' → 0–9
+** - 'a'–'f' → 10–15
+** - 'A'–'F' → 10–15
+**
+** Se il carattere non è valido per alcuna base, ritorna -1.
+*/
 int char_to_value(char c)
 {
 	if(c >= '0' && c <= '9')
@@ -10,7 +30,22 @@ int char_to_value(char c)
 	return(-1);
 }
 
-
+/*
+** Converte una stringa `str` in intero secondo la base specificata (2–16).
+**
+** 1. Ignora spazi iniziali e caratteri di controllo (tab, newline, ecc.).
+** 2. Gestisce opzionalmente un segno '+' o '-'.
+** 3. Per ogni carattere, converte in valore numerico con `char_to_value`.
+**    - Se il valore è valido e inferiore alla base, lo accumula in `res`.
+**    - Altrimenti termina la conversione.
+**
+** Ritorna l'intero risultante, tenendo conto del segno.
+**
+** Esempi:
+** ft_atoi_base("1010", 2)   → 10
+** ft_atoi_base("1A", 16)    → 26
+** ft_atoi_base("-7B", 16)   → -123
+*/
 int ft_atoi_base(const char *str, unsigned int base)
 {
 	int i = 0;
@@ -27,7 +62,7 @@ int ft_atoi_base(const char *str, unsigned int base)
 		i++;
 	}
 
-	while((int)(value = char_to_value(str[i])) != -1 && value < base)
+	while((int)(value = char_to_value(str[i])) != -1 && value < (int)base)
 	{
 		res = res * base + value;
 		i++;
